@@ -8,8 +8,8 @@ string(REGEX MATCH "PROJECT_VERSION_MINOR ([0-9]*)" _ ${ver})
 set(VERSION_MINOR ${CMAKE_MATCH_1})
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 
-set(MAIN_APP_NAME "app")
-set(PROJECT_NAME "template")
+set(MAIN_APP_NAME "ip_filter")
+set(PROJECT_NAME "ip_filter")
 
 set(PROJECT_VESRION ${VERSION_MAJOR}.${VERSION_MINOR}.${PATCH_VERSION})
 
