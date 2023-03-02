@@ -23,7 +23,7 @@ add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(libmetainfo src/metainfo.cpp)
 
 set_target_properties(${MAIN_APP_NAME} libmetainfo PROPERTIES
-    CXX_STANDARD 14
+    CXX_STANDARD 20
     CXX_STANDARD_REQUIRED ON
 )
 
@@ -40,7 +40,7 @@ if(WITH_BOOST_TEST)
     add_executable(test_version tests/test_version.cpp)
 
     set_target_properties(test_version PROPERTIES
-        CXX_STANDARD 14
+        CXX_STANDARD 20
         CXX_STANDARD_REQUIRED ON
     )
 
