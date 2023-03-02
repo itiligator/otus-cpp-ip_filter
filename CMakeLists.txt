@@ -19,7 +19,7 @@ option(WITH_BOOST_TEST "Whether to build Boost test" ON)
 
 configure_file(version.h.in version.h)
 
-add_executable(${MAIN_APP_NAME} src/main.cpp)
+add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(libmetainfo src/metainfo.cpp)
 
 set_target_properties(${MAIN_APP_NAME} libmetainfo PROPERTIES
