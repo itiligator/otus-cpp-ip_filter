@@ -44,11 +44,11 @@ int main()
 
         // TODO reverse lexicographically sort
 
-        for(std::vector<std::vector<std::string> >::const_iterator ip = ip_pool.cbegin(); ip != ip_pool.cend(); ++ip)
+        for(const auto & ip : ip_pool)
         {
-            for(std::vector<std::string>::const_iterator ip_part = ip->cbegin(); ip_part != ip->cend(); ++ip_part)
+            for(auto ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part)
             {
-                if (ip_part != ip->cbegin())
+                if (ip_part != ip.cbegin())
                 {
                     std::cout << ".";
 
