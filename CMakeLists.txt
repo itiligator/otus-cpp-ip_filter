@@ -13,7 +13,7 @@ set(PROJECT_NAME "ip_filter")
 
 set(PROJECT_VESRION ${VERSION_MAJOR}.${VERSION_MINOR}.${PATCH_VERSION})
 
-project(template VERSION ${PROJECT_VESRION})
+project(${PROJECT_NAME} VERSION ${PROJECT_VESRION})
 
 option(WITH_BOOST_TEST "Whether to build Boost test" ON)
 
