@@ -21,8 +21,9 @@ configure_file(version.h.in version.h)
 
 add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(libmetainfo src/metainfo.cpp)
+add_library(addrv4 include/Address.h src/Address.cpp)
 
-set_target_properties(${MAIN_APP_NAME} libmetainfo PROPERTIES
+set_target_properties(${MAIN_APP_NAME} addrv4 PROPERTIES
     CXX_STANDARD 20
     CXX_STANDARD_REQUIRED ON
 )
@@ -32,7 +33,7 @@ target_include_directories(libmetainfo
 )
 
 target_link_libraries(${MAIN_APP_NAME} PRIVATE
-    libmetainfo
+        addrv4
 )
 
 if(WITH_BOOST_TEST)
@@ -69,9 +70,12 @@ if (MSVC)
     endif()
 else ()
     target_compile_options(${MAIN_APP_NAME} PRIVATE
-        -Wall -Wextra -pedantic -Werror
+        -Wall -Wextra -pedantic
     )
     target_compile_options(libmetainfo PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
+    target_compile_options(addrv4 PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
     if(WITH_BOOST_TEST)
