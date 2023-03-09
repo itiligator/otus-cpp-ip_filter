@@ -23,29 +23,22 @@ add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(addrv4 include/Address.h src/Address.cpp)
 
 set_target_properties(${MAIN_APP_NAME} addrv4 PROPERTIES
-    CXX_STANDARD 20
-    CXX_STANDARD_REQUIRED ON
-)
+        CXX_STANDARD 20
+        CXX_STANDARD_REQUIRED ON
+        )
 
 
 target_link_libraries(${MAIN_APP_NAME} PRIVATE
         addrv4
-)
+        )
 
 
-
-if (MSVC)
-    target_compile_options(${MAIN_APP_NAME} PRIVATE
-        /W4
-    )
-else ()
-    target_compile_options(${MAIN_APP_NAME} PRIVATE
+target_compile_options(${MAIN_APP_NAME} PRIVATE
         -Wall -Wextra -pedantic
-    )
-    target_compile_options(addrv4 PRIVATE
+        )
+target_compile_options(addrv4 PRIVATE
         -Wall -Wextra -pedantic -Werror
-    )
-endif()
+        )
 
 install(TARGETS ${MAIN_APP_NAME} RUNTIME DESTINATION bin)
 
