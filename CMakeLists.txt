@@ -15,8 +15,6 @@ set(PROJECT_VESRION ${VERSION_MAJOR}.${VERSION_MINOR}.${PATCH_VERSION})
 
 project(${PROJECT_NAME} VERSION ${PROJECT_VESRION})
 
-option(WITH_BOOST_TEST "Whether to build Boost test" ON)
-
 configure_file(version.h.in version.h)
 
 add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
