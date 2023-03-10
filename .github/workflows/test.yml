@@ -20,5 +20,7 @@ jobs:
       - name: Create debian package
         run: |
           cmake --build . --target package
-      - name: Run tests
+      - name: Run unit tests
         run: ctest
+      - name: Integration test
+        run: ./tests/integration_test.bash
