@@ -17,6 +17,8 @@ project(${PROJECT_NAME} VERSION ${PROJECT_VESRION})
 
 configure_file(version.h.in version.h)
 
+include_directories(include)
+
 add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(addrv4 include/Address.h src/Address.cpp)
 
