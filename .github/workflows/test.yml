@@ -23,4 +23,4 @@ jobs:
         run: |
           cmake --build . --target package
       - name: Run tests
-        run: cd build && ctest
+        run: ctest
