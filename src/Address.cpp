@@ -4,7 +4,7 @@
 
 #include "../include/Address.h"
 #include "string"
-#include "regex"
+
 #include "iostream"
 
 
@@ -12,15 +12,9 @@ namespace ipv4 {
 
     Address::Address(const std::string &str) {
         if (isValidIPAddressString(str)) {
-            uint16_t first = 0;
-            uint16_t second = 0;
-            uint16_t third = 0;
-            uint16_t fourth = 0;
             std::stringstream s(str);
             char ch;
-            s >> first >> ch >> second >> ch >> third >> ch >> fourth;
-            auto tmp = std::make_tuple(first, second, third, fourth);
-            this->swap(tmp);
+            s >> this->at(0) >> ch >> this->at(1) >> ch >> this->at(2) >> ch >> this->at(3);
         } else {
             throw std::invalid_argument("IPv4 address string is malformed");
         }
@@ -28,8 +22,14 @@ namespace ipv4 {
     }
 
     std::ostream &operator<<(std::ostream &os, const ipv4::Address &addr) {
-        os << std::get<0>(addr) << '.' << std::get<1>(addr) << '.' << std::get<2>(addr) << '.' << std::get<3>(addr);
+        os << std::string(addr);
         return os;
+    }
+
+    Address::operator std::string() const {
+        std::stringstream ss;
+        ss  << this->at(0) << "." << this->at(1) << "."<< this->at(2) << "."<< this->at(3);
+        return ss.str();
     }
 
 
