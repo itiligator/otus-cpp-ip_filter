@@ -5,19 +5,21 @@
 #ifndef IP_FILTER_ADDRESS_H
 #define IP_FILTER_ADDRESS_H
 
-#include "tuple"
 #include "string"
 #include "memory"
 #include "regex"
 #include "ostream"
+#include "array"
 
 
 namespace ipv4 {
-class Address : public std::tuple<uint16_t,uint16_t,uint16_t,uint16_t >{
+class Address : public std::array<uint16_t, 4> {// public std::tuple<uint16_t,uint16_t,uint16_t,uint16_t >{
     public:
         typedef std::unique_ptr<Address> Ptr;
 
         explicit Address(const std::string &);
+
+        explicit operator std::string() const;
 
         inline static bool isValidIPAddressString(const std::string &IP) {
             std::regex ipv4regex(
