@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.14)
 
 file(READ "version.h.in" ver)
 
@@ -14,6 +14,13 @@ set(PROJECT_NAME "ip_filter")
 set(PROJECT_VESRION ${VERSION_MAJOR}.${VERSION_MINOR}.${PATCH_VERSION})
 
 project(${PROJECT_NAME} VERSION ${PROJECT_VESRION})
+
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+FetchContent_MakeAvailable(googletest)
 
 configure_file(version.h.in version.h)
 
@@ -39,6 +46,22 @@ target_compile_options(${MAIN_APP_NAME} PRIVATE
 target_compile_options(addrv4 PRIVATE
         -Wall -Wextra -pedantic -Werror
         )
+
+enable_testing()
+
+add_executable(
+        address_test
+        tests/address_test.cc
+)
+target_link_libraries(
+        address_test
+        GTest::gtest_main
+        addrv4
+)
+
+include(GoogleTest)
+gtest_discover_tests(address_test)
+
 
 install(TARGETS ${MAIN_APP_NAME} RUNTIME DESTINATION bin)
 
