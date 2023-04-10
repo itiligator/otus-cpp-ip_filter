@@ -18,7 +18,7 @@ project(${PROJECT_NAME} VERSION ${PROJECT_VESRION})
 include(FetchContent)
 FetchContent_Declare(
         googletest
-        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+        URL https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
 )
 FetchContent_MakeAvailable(googletest)
 
@@ -29,7 +29,19 @@ include_directories(include)
 add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(addrv4 include/Address.h src/Address.cpp)
 
-set_target_properties(${MAIN_APP_NAME} addrv4 PROPERTIES
+enable_testing()
+
+add_executable(
+        address_test
+        tests/address_test.cc
+)
+target_link_libraries(
+        address_test
+        GTest::gtest_main
+        addrv4
+)
+
+set_target_properties(${MAIN_APP_NAME} addrv4 address_test PROPERTIES
         CXX_STANDARD 20
         CXX_STANDARD_REQUIRED ON
         )
@@ -47,17 +59,7 @@ target_compile_options(addrv4 PRIVATE
         -Wall -Wextra -pedantic -Werror
         )
 
-enable_testing()
 
-add_executable(
-        address_test
-        tests/address_test.cc
-)
-target_link_libraries(
-        address_test
-        GTest::gtest_main
-        addrv4
-)
 
 include(GoogleTest)
 gtest_discover_tests(address_test)
