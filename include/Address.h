@@ -13,8 +13,12 @@
 
 
 namespace ipv4 {
-class Address : public std::array<uint16_t, 4> {// public std::tuple<uint16_t,uint16_t,uint16_t,uint16_t >{
-    public:
+    struct Address {
+
+        uint16_t first;
+        uint16_t second;
+        uint16_t third;
+        uint16_t fourth;
 
 
         explicit Address(const std::string &);
@@ -29,10 +33,10 @@ class Address : public std::array<uint16_t, 4> {// public std::tuple<uint16_t,ui
 
         friend std::ostream &operator<<(std::ostream &os, const Address &addr);
 
+        auto operator<=>(const Address &) const = default;
     };
 
     std::ostream &operator<<(std::ostream &os, const ipv4::Address &addr);
-
 
 } // ipv4
 

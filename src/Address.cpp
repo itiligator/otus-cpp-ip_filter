@@ -14,7 +14,7 @@ namespace ipv4 {
         if (isValidIPAddressString(str)) {
             std::stringstream s(str);
             char ch;
-            s >> this->at(0) >> ch >> this->at(1) >> ch >> this->at(2) >> ch >> this->at(3);
+            s >> first >> ch >> second >> ch >> third >> ch >> fourth;
         } else {
             throw std::invalid_argument("IPv4 address string is malformed");
         }
@@ -28,7 +28,7 @@ namespace ipv4 {
 
     Address::operator std::string() const {
         std::stringstream ss;
-        ss  << this->at(0) << "." << this->at(1) << "."<< this->at(2) << "."<< this->at(3);
+        ss << first << "." << second << "." << third << "." << fourth;
         return ss.str();
     }
 

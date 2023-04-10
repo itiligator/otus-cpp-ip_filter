@@ -31,17 +31,17 @@ int main() {
         print(ip_pool, no_filtering);
 
         // Print 1.*.*.*
-        auto starts_from_1 = [](ipv4::Address ip) { return std::get<0>(ip) == 1; };
+        auto starts_from_1 = [](ipv4::Address ip) { return ip.first == 1; };
         print(ip_pool, starts_from_1);
 
         // Print 46.70.*.*
-        auto starts_from_4670 = [](ipv4::Address ip) { return std::get<0>(ip) == 46 && std::get<1>(ip) == 70; };
+        auto starts_from_4670 = [](ipv4::Address ip) { return ip.first == 46 && ip.second == 70; };
         print(ip_pool, starts_from_4670);
 
         // Print 46.*.*.* || *.46.*.* || *.*.46.* || *.*.*.46
         auto has_any_46 = [](ipv4::Address ip) {
-            return std::get<0>(ip) == 46 || std::get<1>(ip) == 46 || std::get<2>(ip) == 46 ||
-                   std::get<3>(ip) == 46;
+            return ip.first == 46 || ip.second == 46 || ip.third == 46 ||
+                   ip.fourth == 46;
         };
         print(ip_pool, has_any_46);
     }
